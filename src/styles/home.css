@@ -1,0 +1,14 @@
+
+
+p{
+    font-style: italic;
+}
+
+.box{
+    background-color: rgb(228, 147, 147);
+    width: auto;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
