@@ -4,20 +4,26 @@ import { useNavigate } from 'react-router';
 
 export const NewAgenda = () => {
 
-    const [data, setData] = useState({});
+    const [agendaData, setAgendaData] = useState({
+      agenda_slug: '',
+      full_name: '',
+      email: '',
+      address: '',
+      phone: ''
+    });
     const navigate = useNavigate()
 
 
 
     const handleChange = (event) => {
-        setData({ ...data, [event.target.name]: event.target.value });
+        setAgendaData({ ...agendaData, [event.target.name]: event.target.value });
       };
     
     // Estructura del POST
     const post = () => {
         const postConfig = {
           method: 'POST',
-          body: JSON.stringify(data),
+          body: JSON.stringify(agendaData),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -47,10 +53,10 @@ export const NewAgenda = () => {
     
       const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(data.agenda_slug);
+        console.log(agendaData.agenda_slug);
         post();
       };
-    // Acaba el POST
+    // Acaba el POST y el envío de los datos
 
   return (
     <div className='container'>

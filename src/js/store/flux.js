@@ -13,6 +13,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
+			foto: [
+				
+			],
+			contacts: [
+
+			],
 
 		},
 		actions: {
@@ -40,6 +46,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ demo: demo });
 			},
 			
+			loadSrc: async(id) => {
+				const response = await fetch(`https://randomuser.me/api/`)
+				const data = await response.json()
+				console.log(data)
+				setStore({foto: data.results[0].picture.medium});
+			},
+			
+			editContact: async (agenda_slug, update) => {
+				const putConfig = {
+				  method: 'PUT',
+				  headers: { 'Content-Type': 'application/json' },
+				  body: JSON.stringify(update),
+				};
+			  
+				const resp = await fetch(`https://assets.breatheco.de/apis/fake/contact/${agenda_slug}`, putConfig);
+				const data = await resp.json();
+			  
+				// Actualiza solo el contacto correspondiente en el estado
+				const updatedContacts = store.contacts.map((contact) => {
+					if (contact.agenda_slug === agenda_slug) { // Corregir aquí
+					  return { ...contact, ...update };
+					}
+					return contact;
+				  });
+			  
+				setStore({ contacts: updatedContacts });
+			  },
+			  
+			  
+
 		}
 	};
 };

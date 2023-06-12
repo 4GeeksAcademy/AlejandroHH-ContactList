@@ -11,6 +11,8 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Register } from "./views/register";
 import { NewAgenda } from "./views/newAgenda";
+import { Agendas } from "./views/agendas";
+import { SingleAgenda } from "./views/singleAgenda";
 
 //create your first component
 const Layout = () => {
@@ -27,6 +29,8 @@ const Layout = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/newAgenda" element={<NewAgenda />} />
+						<Route path="/agendas" element={<Agendas />} />
+						<Route path="/agendas/:agendaId" element={<SingleAgenda />} />
 						<Route path="/register" element={<Register />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
