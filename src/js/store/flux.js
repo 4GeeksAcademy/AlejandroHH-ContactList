@@ -49,30 +49,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 			loadSrc: async(id) => {
 				const response = await fetch(`https://randomuser.me/api/`)
 				const data = await response.json()
-				console.log(data)
+				// console.log(data)
 				setStore({foto: data.results[0].picture.medium});
 			},
 			
-			editContact: async (agenda_slug, update) => {
-				const putConfig = {
-				  method: 'PUT',
-				  headers: { 'Content-Type': 'application/json' },
-				  body: JSON.stringify(update),
+			editContact: async (theid, contact) => {
+				const config = {
+				  method: "PUT",
+				  body: JSON.stringify(contact),
+				  headers: { "Content-Type": "application/json" }
 				};
 			  
-				const resp = await fetch(`https://assets.breatheco.de/apis/fake/contact/${agenda_slug}`, putConfig);
-				const data = await resp.json();
+				try {
+				  const response = await fetch(`https://assets.breatheco.de/apis/fake/contact/${theid}`, config);
+				  if (response.ok) {
+					const data = await response.json();
+					setStore({contact: data})
+					console.log("Contact updated successfully");
+					navigate("/");
+				  } else {
+					throw new Error("Failed to update contact");
+				  }
+				} catch (error) {
+				  console.error("Error:", error);
+				}
+			  }
 			  
-				// Actualiza solo el contacto correspondiente en el estado
-				const updatedContacts = store.contacts.map((contact) => {
-					if (contact.agenda_slug === agenda_slug) { // Corregir aquí
-					  return { ...contact, ...update };
-					}
-					return contact;
-				  });
-			  
-				setStore({ contacts: updatedContacts });
-			  },
 			  
 			  
 
