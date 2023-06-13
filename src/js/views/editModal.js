@@ -17,31 +17,22 @@ export const EditModal = ({ contactId }) => {
     console.log(data);
   };
 
-  useEffect(() => {
-    fetch(`https://assets.breatheco.de/apis/fake/contact/agenda/${agendaId}`)
+
+
+  const openModal = () => {
+
+    fetch(`https://assets.breatheco.de/apis/fake/contact/${contactId}`)
     .then((response) => response.json())
     .then((data) => {
-        setId(data);
-        console.log(data[0]?.full_name)
+      setData(data)
+      console.log(data)
 
     })
     .catch((error) => {
         console.error(error)
     })
-  }, [agendaId])
-
-
-  const openModal = () => {
-    // fetch(`https://assets.breatheco.de/apis/fake/contact/${contactId}`)
-    //   .then((resp) => resp.json())
-    //   .then((data) => {
-    //     setId(data.contact_id);
-    //     console.log(id);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-  
+    
+    
     setShowModal(true);
   };
   
@@ -52,16 +43,23 @@ export const EditModal = ({ contactId }) => {
 
 
 
-  const handleSubmit = (e, cid) => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     const putConfig = {
       method: 'PUT',
-      body: JSON.stringify(e),
+      body: JSON.stringify({
+        "full_name": data.full_name,
+        "email": data.email,
+        "agenda_slug": data.agenda_slug,
+        "address": data.address,
+        "phone":data.phone
+      }),
       headers: {
-        "Content-Type": "application.json"
+        "Content-Type": "application/json"
       }
 
     }
-    fetch(`https://assets.breatheco.de/apis/fake/contact/${id[0].contact_id}`, putConfig)
+    fetch(`https://assets.breatheco.de/apis/fake/contact/${contactId}`, putConfig)
     .then((resp) => resp.json(id))
     .then((data) => {
       setData(data)
@@ -93,19 +91,19 @@ export const EditModal = ({ contactId }) => {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleSubmit}>
-          
+            
 
             <label>Name:</label>
-            <input className="form-control" name="full_name" type="text" onChange={handleChange} />
+            <input className="form-control" name="full_name" value={data.full_name} type="text" onChange={handleChange} />
 
             <label>Email:</label>
-            <input className="form-control" name="email" type="text" onChange={handleChange} />
+            <input className="form-control" name="email" type="text" value={data.email} onChange={handleChange} />
 
             <label>Address:</label>
-            <input className="form-control" name="address" type="text" onChange={handleChange} />
+            <input className="form-control" name="address" type="text" value={data.address} onChange={handleChange} />
 
             <label>Phone:</label>
-            <input className="form-control" name="phone" type="text" onChange={handleChange} />
+            <input className="form-control" name="phone" type="text" value={data.phone} onChange={handleChange} />
           </form>
         </Modal.Body>
         <Modal.Footer>

@@ -68,7 +68,7 @@ export const SingleAgenda = () => {
                                 <h5>Phone: <span>{contact.phone}</span></h5>
                                 <h5>Address: <span>{contact.address}</span></h5>
 
-                                <EditModal contactId={contact.agenda_slug} />
+                                <EditModal contactId={contact.id} agenda_slug={contact.agenda_slug}/>
 
                                 <button><FontAwesomeIcon icon={faTrash} /></button>
 
