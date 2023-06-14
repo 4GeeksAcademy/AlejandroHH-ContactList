@@ -109,7 +109,7 @@ export const SingleAgenda = () => {
 
                                 <EditModal contactId={contact.id} agenda_slug={contact.agenda_slug}/>
 
-                                <button onClick={() => {
+                                <button className='btn btn-danger mt-2' onClick={() => {
                                     
                                       
                                       fetch(`https://assets.breatheco.de/apis/fake/contact/${contact.id}`, deleteConfig)

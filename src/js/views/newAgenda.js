@@ -69,29 +69,28 @@ export const NewAgenda = () => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="agenda_slug" className="form-label ">Agenda Slug</label>
-                    <input type="text" className="form-control fc2" id="agenda_slug" name='agenda_slug' placeholder='ej: user123' onChange={handleChange} />
+                      <input type="text" className="form-control fc2" id="agenda_slug" name='agenda_slug' placeholder='@user' onChange={handleChange} />
+                      <div id="agenda_slugHelp" className="form-text"><p>New agenda slug = new agenda. Existing agenda slug = new contact.</p></div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="full_name" className="form-label">Name </label>
-                    <input type="text" className="form-control fc2" id="full_name" name='full_name' placeholder="My Agenda's Name" onChange={handleChange} />
+                    <input type="text" className="form-control fc2" id="full_name" name='full_name' placeholder="Alfonso" onChange={handleChange} />
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" className="form-control fc2" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' onChange={handleChange} />
+                    <input type="email" className="form-control fc2" id="exampleInputEmail1" aria-describedby="emailHelp" name='email' placeholder='email@email.com' onChange={handleChange} />
                   <div id="emailHelp" className="form-text"><p>We'll never share your email with anyone else.</p></div>
                 </div>
 
-                
-
                 <div className="mb-3">
                     <label htmlFor="address" className="form-label fc2">Address</label>
-                    <input type="text" className="form-control" id="address" name='address' onChange={handleChange} />
+                    <input type="text" className="form-control" id="address" name='address' placeholder='3182 Wilson Avenue, Texas' onChange={handleChange} />
                 </div>
 
                 <div className="mb-3">
                     <label htmlFor="phoneNumber" className="form-label fc2">Phone number</label>
-                    <input type="number" className="form-control" id="phoneNumber" name='phone' onChange={handleChange} />
+                    <input type="number" className="form-control" id="phoneNumber" name='phone' placeholder='+34 613232274' onChange={handleChange} />
                 </div>
 
                 <div className='text-center mt-4'>

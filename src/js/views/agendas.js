@@ -18,8 +18,25 @@ export const Agendas = () => {
         .catch(error => console.error(error))
     }, [])
 
+    const scrollBottom = () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    };
+
+    const scrollTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    };
+
     return (
       <div>
+        <div>
+          <button className='btn btnp ms-4' onClick={scrollBottom}>⬇️</button>
+        </div>
         <h1 className='text-center mb-3'>AGENDAS</h1>
       
         <div className='contenedor text-center'>
@@ -37,6 +54,8 @@ export const Agendas = () => {
             </div>
           ))}
         </div>
+        <button className='btn btnp ms-4' onClick={scrollTop}>⬆️</button>
+
       </div>
       );
       

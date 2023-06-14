@@ -84,7 +84,7 @@ export const EditModal = ({ contactId }) => {
 
   return (
     <>
-      <button type="button" className="btn btn-primary btnp"  onClick={openModal}>
+      <button type="button" className="btn btn-primary btnp mt-3"  onClick={openModal}>
         <FontAwesomeIcon icon={faGear} />
       </button>
 
