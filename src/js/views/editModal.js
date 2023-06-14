@@ -113,7 +113,7 @@ export const EditModal = ({ contactId }) => {
           <Button variant="secondary" onClick={closeModal}>
             Close
           </Button>
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
+          <Button variant="primary btnp" type="submit" onClick={handleSubmit}>
             Save changes
           </Button>
         </Modal.Footer>

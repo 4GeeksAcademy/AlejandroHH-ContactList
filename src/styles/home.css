@@ -29,11 +29,29 @@ h5{
 
 span{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: #db99ff
+    color: #db99ff;
+    
 }
+
+
+.row{
+    display: flex;
+}
+
+.nv{
+    
+
+}
+
+.nv:hover{
+    background-color: black;
+    color: #db99ff!important;
+}
+
 
 p{
     color: #ffffff;
+    
 }
 
 label{
@@ -46,12 +64,12 @@ label{
 }
 
 .btnp:hover{
-    background-color: white;
-    color: #8a51a8;
-    font-weight: bold;
+    background-color: rgb(0, 0, 0);
+    color: #dfa3ff;
     border: 2px solid #8a51a8;
 
 }
+
 
 .slug{
     font-weight: 800;
@@ -90,6 +108,34 @@ p{
     border: 1px solid black;
     border-radius: 10px;
 }
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.box2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    width: 45rem;
+    height: 40rem;
+    padding: 20px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 9.5px );
+    -webkit-backdrop-filter: blur( 9.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    
+}
+.box2 input{
+    width: 30rem;
+}
+
 
 .theContacts{
     display: flex;

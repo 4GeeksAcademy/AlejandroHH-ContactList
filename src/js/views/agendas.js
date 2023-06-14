@@ -29,7 +29,7 @@ export const Agendas = () => {
                 <div className="card-body">
                  
                   
-                  <Link className='btn btn-primary btnp' to={`/agendas/${agenda}`}>Agenda of {agenda}</Link>
+                  <Link className='btn btn-primary btnp' to={`/agendas/${agenda}`}>Agenda of: {agenda}</Link>
                   
                 </div>
 
