@@ -15,7 +15,7 @@ export const Home = () => (
 			<div className="box">
 				<h1>Añade un contacto: <Link to="/register"><button className="btn btn-warning">Register</button></Link></h1>
 				<h1>Explora las agendas: <Link to="/agendas"><button className="btn btn-success">Explore the Agendas</button></Link></h1>
-				<h1>HOLA</h1>
+				<h1>Delete an agenda: <Link to="/delete"><button className="btn btn-success">Delete</button></Link></h1>
 			</div>
 		</div>
 	</div>

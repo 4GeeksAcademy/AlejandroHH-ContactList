@@ -21,35 +21,36 @@ export const NewAgenda = () => {
     
     // Estructura del POST
     const post = () => {
-        const postConfig = {
-          method: 'POST',
-          body: JSON.stringify(agendaData),
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        };
+      const postConfig = {
+        method: 'POST',
+        body: JSON.stringify(agendaData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
     
-        fetch(`https://assets.breatheco.de/apis/fake/contact/`, postConfig)
+      fetch(`https://assets.breatheco.de/apis/fake/contact/`, postConfig)
         .then((response) => {
           if (response.ok) {
             return response.json();
           } else {
-            alert(`${data.agenda_slug} already exists!`)
+            throw new Error('Error creating agenda');
           }
         })
         .then((data) => {
-          if (!data.agenda_slug.includes(agenda_slug)) {
-            alert(`${data.agenda_slug} has been successfully created.`);
+          if (data.agenda_slug === agendaData.agenda_slug) {
+            alert(`${data.agenda_slug}  has been successfully created.`);
           } else {
-            alert('no');
+            alert(`${data.agenda_slug} already exists!`);
           }
           navigate("/");
         })
-        .catch((error) => console.error(error));
-
-            
-          
-      };
+        .catch((error) => {
+          alert(error.message);
+          console.error(error);
+        });
+    };
+    
     
       const handleSubmit = (event) => {
         event.preventDefault();
@@ -66,7 +67,7 @@ export const NewAgenda = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="agenda_slug" className="form-label ">Agenda Identifier</label>
+                    <label htmlFor="agenda_slug" className="form-label ">Agenda Slug</label>
                     <input type="text" className="form-control" id="agenda_slug" name='agenda_slug' placeholder='ej: user123' onChange={handleChange} />
                 </div>
                 <div className="mb-3">

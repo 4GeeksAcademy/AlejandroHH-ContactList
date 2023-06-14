@@ -41,6 +41,8 @@ export const EditModal = ({ contactId }) => {
   //   console.log(id); // Muestra el valor actual de id
   // }, [id]);
 
+  
+
 
 
   const handleSubmit = (e) => {
@@ -63,6 +65,7 @@ export const EditModal = ({ contactId }) => {
     .then((resp) => resp.json(id))
     .then((data) => {
       setData(data)
+      window.location.reload();
     })
   }
 
@@ -81,7 +84,7 @@ export const EditModal = ({ contactId }) => {
 
   return (
     <>
-      <button type="button" className="btn btn-primary"  onClick={openModal}>
+      <button type="button" className="btn btn-primary btnp"  onClick={openModal}>
         <FontAwesomeIcon icon={faGear} />
       </button>
 

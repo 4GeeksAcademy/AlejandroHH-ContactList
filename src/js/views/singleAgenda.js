@@ -6,12 +6,17 @@ import {Context} from '../store/appContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { EditModal } from './editModal'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
+
 
 export const SingleAgenda = () => {
     const [contacts, setContacts] = useState([]);
    // const [src, setSrc] = useState([]);
     const { agendaId } = useParams();
     const { actions } = useContext(Context)
+    const navigate = useNavigate()
+
 
     useEffect(() => {
 		actions.loadSrc(agendaId)
@@ -31,6 +36,27 @@ export const SingleAgenda = () => {
         })
     }, [agendaId])
 
+    // const handleDelete = (contactId) => {
+    //   const deleteConfig = {
+    //     method: 'DELETE',
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     }
+    //   };
+    
+    //   fetch(`https:/assets.breatheco.de/apis/fake/contact/${contactId}`, deleteConfig)
+    //     .then((resp) => {
+    //       if (!resp.ok) {
+    //         throw new Error('Something went wrong...');
+    //       }
+    //       alert('Contact deleted successfully');
+    //       window.location.reload();
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    // };
+
     const changeSex = () => {
          let randomNum = Math.random()
          if(randomNum < 0.5){
@@ -45,6 +71,17 @@ export const SingleAgenda = () => {
         return randomNum;
    }
 
+   const deleteConfig = {
+    method: 'DELETE',
+    body: JSON.stringify(),
+    headers: {
+      "Content-Type": "application.json"
+    }
+
+  }
+
+  
+
 
 
     
@@ -52,7 +89,9 @@ export const SingleAgenda = () => {
         <>
             <div className='container'>
                 <div className='row'>                    
-                    <h1>Agenda de {contacts?.agenda_slug}</h1>
+                    {/* <h1>Agenda de {contacts?.agenda_slug}</h1> */}
+                    
+
                 </div>
                 <div className='row theContacts'>
                     {contacts.map((contact, index) => (
@@ -70,7 +109,24 @@ export const SingleAgenda = () => {
 
                                 <EditModal contactId={contact.id} agenda_slug={contact.agenda_slug}/>
 
-                                <button><FontAwesomeIcon icon={faTrash} /></button>
+                                <button onClick={() => {
+                                    
+                                      
+                                      fetch(`https://assets.breatheco.de/apis/fake/contact/${contact.id}`, deleteConfig)
+                                      .then((resp) => {
+                                        if(!resp.ok){
+                                          throw new Error('Something went wrong...')
+                                        } else{
+                                            alert('Contact deleted successfully')
+                                            window.location.reload();
+                                        }
+                                        
+                                  
+                                      })
+                                      .catch((e) => {
+                                        console.log(e)
+                                      })
+                                }}><FontAwesomeIcon icon={faTrash} /></button>
 
 
 
@@ -84,6 +140,26 @@ export const SingleAgenda = () => {
                         </div>
                     ))}
                 </div>
+                <div className='col-12 text-center'>
+                    <button className="btn btn-danger btnt" onClick={() => {
+                      const agendaSlug = contacts[0]?.agenda_slug; 
+                      fetch(`https://assets.breatheco.de/apis/fake/contact/agenda/${agendaSlug}`, deleteConfig)
+                        .then((resp) => {
+                          if (!resp.ok) {
+                            throw new Error('Something went wrong...');
+                          } else {
+                            alert(`${contacts[0]?.agenda_slug}'s agenda deleted successfully!`);
+                            navigate('/agendas')
+                          }
+                        })
+                        .catch((e) => {
+                          console.log(e);
+                        });
+                    }}> Delete agenda 
+                    </button>
+                </div>
+
+                
             </div> 
                 
         </>

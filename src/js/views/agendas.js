@@ -19,13 +19,25 @@ export const Agendas = () => {
     }, [])
 
     return (
-        <div>
+      <div>
+        <h1 className='text-center mb-3'>AGENDAS</h1>
+      
+        <div className='contenedor text-center'>
           {agendas.map((agenda, index) => (
-            <div key={index}>
-              <Link to={`/agendas/${agenda}`}>{agenda}</Link>
+            <div className='agednaCard' key={index}>
+
+                <div className="card-body">
+                 
+                  
+                  <Link className='btn btn-primary btnp' to={`/agendas/${agenda}`}>Agenda of {agenda}</Link>
+                  
+                </div>
+
+              
             </div>
           ))}
         </div>
+      </div>
       );
       
       
